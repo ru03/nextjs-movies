@@ -1,4 +1,4 @@
-# [WIP]
+# [WIP] - Next.js Movies Example
 
 This is an app to practice with Next.js framework. I'll build a small app to show different movies/tv shows with their  seasons and cast.... 
 
