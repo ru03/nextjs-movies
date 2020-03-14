@@ -1,3 +1,7 @@
+# [WIP] - Next.js Movies Example
+
+This is an app to practice with Next.js framework. I'll build a small app to show different movies/tv shows with their  seasons and cast.... 
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
