@@ -1,6 +1,4 @@
-import Head from 'next/head';
 import fetch from 'node-fetch';
-import Navbar from '../components/navbar/Navbar';
 import MovieCard from '../components/movieCard/MovieCard';
 
 const Home = ({ shows }) => {
@@ -11,10 +9,11 @@ const Home = ({ shows }) => {
             shows.map(show =>
               <MovieCard
                 key={show.id}
-                name={show.name}
-                language={show.language}
-                rating={show.rating.average}
+                id={show.id}
                 img={show.image.medium}
+                language={show.language}
+                name={show.name}
+                rating={show.rating.average}
                 summary={show.summary}
               />
             )
@@ -24,7 +23,7 @@ const Home = ({ shows }) => {
   )
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const rest = await fetch('http://api.tvmaze.com/shows');
   const shows = await rest.json();
 
