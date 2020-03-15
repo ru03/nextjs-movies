@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next export",
-    "start": "next start",
-    "deploy": "npm run build && npm run export"
+    "start": "next start"
   },
   "dependencies": {
     "autoprefixer": "^9.7.4",
