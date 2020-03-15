@@ -27,7 +27,7 @@ const MovieCard = ({ id, name, language, rating, img, summary }) => {
         <div className="flex items-center">
           <div className="text-sm">
             <p className="text-gray-900 leading-none">{language}</p>
-            <p className="text-gray-600">{rating}</p>
+            <p className="text-gray-600"><i className="fas fa-star pr-1 text-yellow-500" />{rating}</p>
           </div>
         </div>
       </div>
