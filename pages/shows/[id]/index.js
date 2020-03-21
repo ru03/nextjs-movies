@@ -1,7 +1,6 @@
 import fetch from 'node-fetch';
 
 const Id = ({ show }) => {
-  console.log(show)
   return (
     <div className="container mx-auto">
       <div className="flex flex-row justify-around mt-10">

@@ -1,8 +1,27 @@
+import { useState, useCallback } from 'react';
 import Head from 'next/head';
+import fetch from 'node-fetch';
 import Navbar from '../components/navbar/Navbar';
+import debounce from '../helpers/debounce/debounce';
 import '../css/tailwind.css'
 
 function MyApp({ Component, pageProps }) {
+  const [search, setSearch] = useState('');
+  const [results, setResults] = useState([]);
+
+  const fetchSearchData = async (search) => {
+    const res = await fetch(`http://api.tvmaze.com/search/shows?q=${search}`);
+    const results = await res.json();
+    setResults(results);
+  }
+
+  const debounceSearch = useCallback(debounce(fetchSearchData, 500), []);
+
+  const handlerOnChange = (value) => {
+    setSearch(value);
+    debounceSearch(value);
+  }
+
   return (
     <>
       <Head>
@@ -13,7 +32,11 @@ function MyApp({ Component, pageProps }) {
           crossOrigin="anonymous"
         />
       </Head>
-      <Navbar />
+      <Navbar
+        onChange={({ target: { value } }) => handlerOnChange(value)}
+        results={results}
+        search={search}
+      />
       <Component {...pageProps} />
     </>
   )

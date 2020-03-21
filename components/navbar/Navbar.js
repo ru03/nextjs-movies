@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import styles from './Navbar.module.css';
 
-const Navbar = () => {
+const Navbar = ({ onChange, results = [], search }) => {
   const router = useRouter();
   const active = router.pathname;
   const linkClass = 'block lg:inline-block text-white hover:text-blue-500 mr-4 cursor-pointer';
@@ -26,12 +27,34 @@ const Navbar = () => {
             <i className="fas fa-search"></i>
           </span>
           <input
+            name="search"
             className="flex-1 focus:outline-none focus:shadow-outline rounded-r-lg leading-none py-2 px-4"
             placeholder="Search"
+            onChange={(e) => onChange && onChange(e)}
+            type="search"
+            value={search}
           />
+          {results.length > 0 && (
+            <div className={`absolute border border-gray-500 bg-gray-300 rounded-lg ${styles.searchResults}`}>
+              <ul>
+                {results.map(({ show: { id, name } }, i) => (
+                  <li
+                    key={id}
+                    className={i !== results.length - 1
+                      ? "font-bold cursor-pointer border-b border-black"
+                      : "font-bold cursor-pointer"
+                    }
+                    onClick={() => router.push(`/shows/${id}`)}
+                  >
+                    {name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
-    </nav>
+    </nav >
   )
 }
 
