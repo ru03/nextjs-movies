@@ -1,6 +1,26 @@
 import fetch from 'node-fetch';
-
+import Tabs from '../../../components/Tabs/Tabs';
+import { useState } from 'react';
+import SeasonEpisodes from '../../../components/seasonEpisodes/SeasonEpisodes';
 const Id = ({ show }) => {
+  const [activeTab, setActiveTab] = useState(0);
+  const [seasonId, setSeasonId] = useState(show._embedded.seasons[0].id);
+
+  const mapperSeasons = (seasons) => {
+    return seasons.reduce((prev, current, index) => {
+      return [...prev, {
+        ...current,
+        tabName: `Season ${index + 1}`,
+      }];
+    }, []);
+  }
+
+  const handlerOnTabClick = (index) => {
+    setActiveTab(index)
+    setSeasonId(show._embedded.seasons[index].id);
+  };
+
+  console.log('mapper', mapperSeasons(show._embedded.seasons))
   return (
     <div className="container mx-auto">
       <div className="flex flex-row justify-around mt-10">
@@ -23,6 +43,16 @@ const Id = ({ show }) => {
           <div className="w-full h-px my-1 bg-color bg-gray-700" />
           <div className="text-base" dangerouslySetInnerHTML={{ __html: show.summary }} />
         </div>
+      </div>
+      <div className="mt-5">
+        <Tabs
+          tabs={mapperSeasons(show._embedded.seasons)}
+          onClick={handlerOnTabClick}
+          activeTab={activeTab}
+        />
+        <SeasonEpisodes
+          seasonId={seasonId}
+        />
       </div>
     </div >
   );
