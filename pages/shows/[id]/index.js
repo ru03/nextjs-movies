@@ -20,7 +20,6 @@ const Id = ({ show }) => {
     setSeasonId(show._embedded.seasons[index].id);
   };
 
-  console.log('mapper', mapperSeasons(show._embedded.seasons))
   return (
     <div className="container mx-auto">
       <div className="flex flex-row justify-around mt-10">
