@@ -30,7 +30,7 @@ const Id = ({ show }) => {
 
 export async function getServerSideProps(context) {
   const id = context.params.id;
-  const res = await fetch(`http://api.tvmaze.com/shows/${id}?embed=seasons`);
+  const res = await fetch(`https://api.tvmaze.com/shows/${id}?embed=seasons`);
   const show = await res.json();
   return {
     props: {

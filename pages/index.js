@@ -24,7 +24,7 @@ const Home = ({ shows }) => {
 }
 
 export async function getStaticProps() {
-  const rest = await fetch('http://api.tvmaze.com/shows');
+  const rest = await fetch('https://api.tvmaze.com/shows');
   const shows = await rest.json();
 
   return {

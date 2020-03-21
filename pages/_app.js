@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
   const [results, setResults] = useState([]);
 
   const fetchSearchData = async (search) => {
-    const res = await fetch(`http://api.tvmaze.com/search/shows?q=${search}`);
+    const res = await fetch(`https://api.tvmaze.com/search/shows?q=${search}`);
     const results = await res.json();
     setResults(results);
   }
